@@ -26,3 +26,7 @@
   service: name=ntpd state=started enabled=true
   when: ansible_nodename not in ntpServers
   tags: ntp
+
+- name: ensureFirwalldStopped
+  service: name=firewalld state=stopped enabled=false
+  tags: firewall
