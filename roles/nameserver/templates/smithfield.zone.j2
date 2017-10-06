@@ -1,0 +1,28 @@
+$TTL 100
+$ORIGIN smithfield.
+@       IN SOA  ns1.smithfield. ns1.smithfield. (
+                                        2017100601      ; serial
+                                        30      ; refresh
+                                        15m     ; retry
+                                        4w      ; expire
+                                        1h )    ; minimum
+
+;;      NS RECORDS:
+@               NS      ns1.smithfield.
+@               NS      ns2.smithfield.
+ns1             A       192.168.1.20
+ns2             A       192.168.1.22
+
+gw              A       192.168.1.1
+host            A       192.168.1.110
+
+timeserver1     A       192.168.1.25
+ntp1            CNAME   timeserver1
+
+ans1            A       192.168.1.27
+ans01           CNAME   ans1
+ans             CNAME   ans1
+
+k1              A       192.168.1.31
+k2              A       192.168.1.32
+k3              A       192.168.1.33

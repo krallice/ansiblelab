@@ -1,0 +1,15 @@
+---
+# file: smithfield.yml
+- hosts: ntpservers
+  roles:
+    - common
+    - ntpserver
+
+- hosts: nameservers
+  roles:
+    - common
+    - nameserver
+
+- hosts: kubeservers
+  roles:
+    - common

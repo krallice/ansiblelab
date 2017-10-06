@@ -1,0 +1,20 @@
+---
+# file: roles/ntpserver/tasks/main.yml
+
+- name: ensureChronydStoppedDisabled
+  service: name=chronyd state=stopped enabled=no
+  tags: ntp
+
+- name: ensureNtpdInstalled
+  yum: name=ntp state=installed
+  tags: ntp
+
+- name: deployNtpdConfig
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - restartNtpd
+  tags: ntp
+
+- name: ensureNtpdRunningEnabled
+  service: name=ntpd state=started enabled=yes
+  tags: ntp

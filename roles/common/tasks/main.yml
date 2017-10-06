@@ -1,0 +1,28 @@
+---
+# file: roles/common/tasks/main.yml
+
+- name: deployResolvConf
+  template: src=resolv.conf.j2 dest=/etc/resolv.conf
+  tags: resolv
+
+- name: ensureChronydStopped
+  service: name=chronyd state=stopped enabled=false
+  when: ansible_nodename not in ntpServers
+  tags: ntp
+
+- name: ensureNtpdInstalled
+  yum: name=ntp state=installed
+  when: ansible_nodename not in ntpServers
+  tags: ntp
+
+- name: deployNtpdClientConfiguration
+  template: src=ntp.conf.client.j2 dest=/etc/ntp.conf
+  when: ansible_nodename not in ntpServers
+  notify:
+    - ensureNtpdRestarted
+  tags: ntp
+
+- name: ensureNtpdStartedEnabled
+  service: name=ntpd state=started enabled=true
+  when: ansible_nodename not in ntpServers
+  tags: ntp

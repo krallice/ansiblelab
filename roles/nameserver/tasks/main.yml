@@ -1,0 +1,34 @@
+---
+# file: roles/nameserver/tasks.yml
+
+- name: ensureNamedInstalled
+  yum: name=bind state=installed
+  tags: named
+
+# - name: deployMasterNamedConf
+  # template: src=named.conf.master.j2 dest=/etc/named.conf
+  # when: inventory_hostname == "ns1.smithfield"
+  # notify:
+    # - restartNamed
+  # tags: named
+
+# - name: deploySlaveNamedConf
+  # template: src=named.conf.slave.j2 dest=/etc/named.conf
+  # when: inventory_hostname != "ns1.smithfield"
+  # notify:
+    # - restartNamed
+  # tags: named
+
+- name: deployMasterSlaveConf
+  template: src=named.conf.masterslave.j2 dest=/etc/named.conf
+  #when: inventory_hostname == "ns1.smithfield"
+  vars:
+    myNet: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
+  notify:
+    - restartNamed
+  tags: named
+
+- name: ensureNamedRunningEnabled
+  service: name=named state=started enabled=yes
+  tags: named
+  

@@ -1,0 +1,11 @@
+[kubeservers]
+k1.smithfield
+k2.smithfield
+k3.smithfield
+
+[ntpservers]
+ntp1.smithfield
+
+[nameservers]
+ns1.smithfield
+ns2.smithfield

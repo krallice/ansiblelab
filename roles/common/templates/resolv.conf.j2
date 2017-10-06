@@ -1,0 +1,10 @@
+#
+# Deployed via Ansible
+#
+
+search {{ nameServerSearch }}
+
+nameserver {{ masterNameServerIp }}
+{% for host in slaveNameServerIps %}
+nameserver {{ host }}
+{% endfor %}
