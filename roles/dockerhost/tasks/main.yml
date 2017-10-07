@@ -1,0 +1,10 @@
+---
+# file: roles/dockerhost/tasks/main.yml
+
+- name: ensureDockerdInstalled
+  yum: name=docker state=installed
+  tags: docker
+
+- name: ensureDockerdStartedEnabled
+  service: name=docker state=started enabled=true
+  tags: docker

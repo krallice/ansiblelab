@@ -9,3 +9,7 @@ ntp1.smithfield
 [nameservers]
 ns1.smithfield
 ns2.smithfield
+
+[dockerhosts]
+d1.smithfield
+d2.smithfield

@@ -13,3 +13,8 @@
 - hosts: kubeservers
   roles:
     - common
+
+- hosts: dockerhosts
+  roles:
+    - common
+    - dockerhost
