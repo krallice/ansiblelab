@@ -13,3 +13,8 @@ ns2.smithfield
 [dockerhosts]
 d1.smithfield
 d2.smithfield
+
+[openshiftservers]
+os1.smithfield
+os2.smithfield
+os3.smithfield

@@ -18,3 +18,7 @@
   roles:
     - common
     - dockerhost
+
+- hosts: openshiftservers
+  roles:
+    - common
